@@ -36,36 +36,48 @@ export function NewsroomSection() {
 
         <div
           data-node-id="12:8"
-          className="grid gap-[18px] md:grid-cols-2 xl:h-[456px] xl:grid-cols-[repeat(3,425px)]"
+          className="-mx-5 overflow-hidden md:-mx-10 xl:-mx-16"
         >
-          {newsroomArticles.map((article) => (
-            <article
-              key={article.index}
-              className="rounded-panel flex min-h-[456px] flex-col items-start gap-5 overflow-hidden border border-[#2d2734] bg-[#14111a] px-[18px] pt-[18px] pb-[22px]"
-            >
-              <div
-                className={cn(
-                  "relative h-[220px] w-full shrink-0 overflow-hidden rounded-[18px] bg-gradient-to-r xl:w-[389px]",
-                  article.gradient,
-                )}
-              >
-                <p className="font-display absolute top-[54px] left-6 text-[104px] leading-[113px] font-bold text-white opacity-[0.26]">
-                  {article.index}
-                </p>
-                <span className="absolute top-[18px] left-5 rounded-full bg-[rgba(14,11,20,0.72)] px-[10px] py-[7px] text-[10px] leading-3 font-semibold text-white">
-                  {article.category}
-                </span>
-              </div>
-              <div className="flex w-[380px] max-w-full flex-col items-start gap-3">
-                <h3 className="font-display max-w-[380px] text-[24px] leading-[26px] font-semibold text-white">
-                  {article.title}
-                </h3>
-                <p className="text-[12px] leading-[15px] text-[#8f8697]">
-                  {article.meta}
-                </p>
-              </div>
-            </article>
-          ))}
+          <div className="pl-5 md:pl-10 xl:pl-16">
+            <div className="newsroom-marquee-track flex w-max">
+              {[0, 1].map((groupIndex) => (
+                <div
+                  key={groupIndex}
+                  className="flex shrink-0 gap-[18px] pr-[18px]"
+                  aria-hidden={groupIndex === 1}
+                >
+                  {newsroomArticles.map((article) => (
+                    <article
+                      key={`${groupIndex}-${article.index}`}
+                      className="rounded-panel flex min-h-[456px] w-[min(82vw,425px)] shrink-0 flex-col items-start gap-5 overflow-hidden border border-[#2d2734] bg-[#14111a] px-[18px] pt-[18px] pb-[22px]"
+                    >
+                      <div
+                        className={cn(
+                          "relative h-[220px] w-full shrink-0 overflow-hidden rounded-[18px] bg-gradient-to-r",
+                          article.gradient,
+                        )}
+                      >
+                        <p className="font-display absolute top-[54px] left-6 text-[104px] leading-[113px] font-bold text-white opacity-[0.26]">
+                          {article.index}
+                        </p>
+                        <span className="absolute top-[18px] left-5 rounded-full bg-[rgba(14,11,20,0.72)] px-[10px] py-[7px] text-[10px] leading-3 font-semibold text-white">
+                          {article.category}
+                        </span>
+                      </div>
+                      <div className="flex w-[380px] max-w-full flex-col items-start gap-3">
+                        <h3 className="font-display max-w-[380px] text-[24px] leading-[26px] font-semibold text-white">
+                          {article.title}
+                        </h3>
+                        <p className="text-[12px] leading-[15px] text-[#8f8697]">
+                          {article.meta}
+                        </p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </PageContainer>
     </section>

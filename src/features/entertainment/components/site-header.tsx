@@ -1,5 +1,6 @@
 'use client';
 
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type MouseEvent } from "react";
@@ -32,6 +33,7 @@ export function SiteHeader({
 } = {}) {
   const pathname = usePathname();
   const [isCompact, setIsCompact] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     let animationFrame = 0;
@@ -113,6 +115,14 @@ export function SiteHeader({
     window.sessionStorage.setItem(pendingSectionKey, sectionId);
   };
 
+  const handleMobileNavigation = (
+    event: MouseEvent<HTMLAnchorElement>,
+    item: HeaderNavigationItem,
+  ) => {
+    handleNavigation(event, item);
+    setIsMobileMenuOpen(false);
+  };
+
   const activeNavigationItem: HeaderNavigationItem["label"] | null =
     pathname === "/"
       ? "Music"
@@ -158,33 +168,93 @@ export function SiteHeader({
             ))}
           </nav>
 
-          <Link
-            data-node-id="3:12"
-            href="/"
-            onClick={(event) => {
-              if (pathname === "/") {
-                event.preventDefault();
-                document.getElementById("ai")?.scrollIntoView({
-                  behavior: getScrollBehavior(),
-                  block: "start",
-                });
-              } else {
-                window.sessionStorage.setItem(pendingSectionKey, "ai");
-              }
-            }}
-            className={`focus-visible:outline-vibe-lime flex w-10 shrink-0 items-center justify-center gap-2 rounded-full border border-[#4a3d66] bg-[#1f1a2e] px-0 text-[13px] leading-4 font-semibold transition-[height,padding] duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none sm:w-[144px] sm:justify-start sm:px-[14px] ${
-              isCompact ? "h-[30px]" : "h-[38px]"
-            }`}
-          >
-            <span className="w-3 text-[#c46eff]" aria-hidden="true">
-              ✦
-            </span>
-            <span className="hidden text-[#f2f0fa] sm:inline">
-              Explore with AI
-            </span>
-          </Link>
+          <div className="flex shrink-0 items-center gap-2">
+            <Link
+              data-node-id="3:12"
+              href="/"
+              onClick={(event) => {
+                if (pathname === "/") {
+                  event.preventDefault();
+                  document.getElementById("ai")?.scrollIntoView({
+                    behavior: getScrollBehavior(),
+                    block: "start",
+                  });
+                } else {
+                  window.sessionStorage.setItem(pendingSectionKey, "ai");
+                }
+                setIsMobileMenuOpen(false);
+              }}
+              className={`focus-visible:outline-vibe-lime flex w-10 shrink-0 items-center justify-center gap-2 rounded-full border border-[#4a3d66] bg-[#1f1a2e] px-0 text-[13px] leading-4 font-semibold transition-[height,padding] duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none sm:w-[144px] sm:justify-start sm:px-[14px] ${
+                isCompact ? "h-[30px]" : "h-[38px]"
+              }`}
+            >
+              <span className="w-3 text-[#c46eff]" aria-hidden="true">
+                ✦
+              </span>
+              <span className="hidden text-[#f2f0fa] sm:inline">
+                Explore with AI
+              </span>
+            </Link>
+
+            <button
+              type="button"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-navigation"
+              onClick={() => setIsMobileMenuOpen((current) => !current)}
+              className={`focus-visible:outline-vibe-lime flex w-10 shrink-0 items-center justify-center rounded-full border border-[#4a3d66] bg-[#1f1a2e] text-[#f2f0fa] transition-[height,color,border-color] duration-300 ease-in-out hover:border-vibe-purple hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none md:hidden ${
+                isCompact ? "h-[30px]" : "h-[38px]"
+              }`}
+            >
+              {isMobileMenuOpen ? (
+                <X size={18} strokeWidth={2.2} aria-hidden="true" />
+              ) : (
+                <Menu size={18} strokeWidth={2.2} aria-hidden="true" />
+              )}
+            </button>
+          </div>
         </PageContainer>
       </header>
+      <div
+        id="mobile-navigation"
+        aria-hidden={!isMobileMenuOpen}
+        className={`fixed inset-x-0 z-40 overflow-hidden bg-[rgba(11,9,17,0.96)] shadow-[0_28px_80px_rgba(0,0,0,0.42)] backdrop-blur-xl transition-[top,max-height,opacity,transform,border-color] duration-300 ease-[cubic-bezier(0.2,0.75,0.25,1)] will-change-transform motion-reduce:transition-none md:hidden ${
+          isCompact ? "top-[50px]" : "top-24"
+        } ${
+          isMobileMenuOpen
+            ? "pointer-events-auto max-h-[360px] translate-y-0 border-b border-[#2a2235] opacity-100"
+            : "pointer-events-none max-h-0 -translate-y-3 border-b border-transparent opacity-0"
+        }`}
+      >
+        <PageContainer className="py-4">
+          <nav aria-label="Mobile navigation" className="flex flex-col gap-2">
+            {navigationItems.map((item, index) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                tabIndex={isMobileMenuOpen ? 0 : -1}
+                onClick={(event) => handleMobileNavigation(event, item)}
+                style={{
+                  transitionDelay: isMobileMenuOpen
+                    ? `${80 + index * 45}ms`
+                    : "0ms",
+                }}
+                className={`focus-visible:outline-vibe-lime flex min-h-12 items-center rounded-[14px] border px-4 text-[15px] leading-5 font-semibold transition-[opacity,transform,border-color,background-color,color] duration-300 ease-[cubic-bezier(0.2,0.75,0.25,1)] focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none ${
+                  isMobileMenuOpen
+                    ? "translate-y-0 opacity-100"
+                    : "-translate-y-2 opacity-0"
+                } ${
+                  item.label === activeNavigationItem
+                    ? "border-[rgba(207,255,58,0.42)] bg-[rgba(207,255,58,0.1)] text-vibe-lime"
+                    : "border-[#2d2734] bg-[#131018] text-[#f2f0fa]"
+                }`}
+              >
+                <span>{item.label}</span>
+              </Link>
+            ))}
+          </nav>
+        </PageContainer>
+      </div>
       <div aria-hidden="true" className="h-24" />
     </>
   );

@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { PageContainer } from "@/components/layout/page-container";
+import { ScrollReveal } from "@/components/layout/scroll-reveal";
 import { SiteFooter } from "@/features/entertainment/components/site-footer";
 import { SiteHeader } from "@/features/entertainment/components/site-header";
 
@@ -85,13 +86,25 @@ export function NewsLandingPage() {
     <div className="bg-vibe-bg mx-auto w-full max-w-[1440px] overflow-hidden">
       <main id="top">
         <SiteHeader />
-        <NewsMasthead />
-        <LeadStorySection />
-        <ArtistDeskSection />
-        <FanConversationsSection />
-        <WeeklyBriefingSection />
+        <ScrollReveal direction="up">
+          <NewsMasthead />
+        </ScrollReveal>
+        <ScrollReveal direction="left">
+          <LeadStorySection />
+        </ScrollReveal>
+        <ScrollReveal direction="right">
+          <ArtistDeskSection />
+        </ScrollReveal>
+        <ScrollReveal direction="up">
+          <FanConversationsSection />
+        </ScrollReveal>
+        <ScrollReveal direction="down">
+          <WeeklyBriefingSection />
+        </ScrollReveal>
       </main>
-      <SiteFooter />
+      <ScrollReveal direction="up">
+        <SiteFooter />
+      </ScrollReveal>
     </div>
   );
 }
@@ -103,7 +116,11 @@ function NewsMasthead() {
       className="bg-vibe-bg xl:h-[550px]"
     >
       <PageContainer className="h-full py-9 xl:pb-[34px]">
-        <div className="relative min-h-[480px] rounded-[20px] bg-[#131018] px-6 py-8 sm:px-8 xl:h-[480px] xl:py-0">
+        <div className="relative min-h-[480px] overflow-hidden rounded-[20px] bg-[#131018] px-6 py-8 sm:px-8 xl:h-[480px] xl:py-0">
+          <div
+            className="news-signal-line pointer-events-none absolute top-0 left-0 h-px w-1/2 bg-[linear-gradient(90deg,transparent,#cfff3a,transparent)] opacity-70"
+            aria-hidden="true"
+          />
           <p className="text-vibe-lime text-[11px] leading-[22px] font-semibold xl:absolute xl:top-8 xl:left-8">
             PT Digitals&nbsp; / &nbsp;THE CULTURE DESK
           </p>
@@ -149,7 +166,7 @@ function LeadStorySection() {
           </p>
 
           <div className="mt-[18px] grid gap-10 lg:grid-cols-[minmax(0,720px)_minmax(360px,520px)] lg:gap-12 xl:absolute xl:top-[88px] xl:left-0 xl:mt-0 xl:grid-cols-[720px_520px]">
-            <figure className="relative h-[360px] overflow-hidden rounded-[18px] sm:h-[430px] xl:h-[430px]">
+            <figure className="group relative h-[360px] overflow-hidden rounded-[18px] sm:h-[430px] xl:h-[430px]">
               <Image
                 src="/figma/news/madonna-vmas.png"
                 alt="A neon arena performance with a luminous stage"
@@ -157,7 +174,7 @@ function LeadStorySection() {
                 loading="eager"
                 fetchPriority="high"
                 sizes="(min-width: 1440px) 720px, (min-width: 1024px) 55vw, 100vw"
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <figcaption className="absolute inset-x-0 bottom-0 flex h-[50px] items-center bg-[#0d0a14] px-5 text-[10px] leading-[22px] font-semibold text-[#f8f6ff]">
                 2026 VMAs&nbsp; • &nbsp;7 WINS&nbsp; •
@@ -235,11 +252,11 @@ function ArtistDeskSection() {
           New music, big wins and the moments fans are following.
         </h2>
 
-        <div className="mt-[26px] xl:mt-[30px]">
+        <div className="news-artist-list mt-[26px] xl:mt-[30px]">
           {latestStories.map((story) => (
             <article
               key={story.title}
-              className="relative min-h-[138px] border-b border-[#30263b] py-4 pl-[132px] xl:h-[114px] xl:min-h-0 xl:py-0 xl:pl-[140px]"
+              className="news-artist-list-item group relative min-h-[138px] border-b border-[#30263b] py-4 pl-[132px] transition-colors duration-300 hover:border-vibe-purple/70 xl:h-[114px] xl:min-h-0 xl:py-0 xl:pl-[140px]"
             >
               <div className="absolute top-4 left-0 h-[84px] w-28 overflow-hidden rounded-[10px] xl:top-0">
                 <Image
@@ -247,7 +264,7 @@ function ArtistDeskSection() {
                   alt={story.imageAlt}
                   fill
                   sizes="112px"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                 />
               </div>
               <div className="flex flex-col gap-2 xl:gap-[5px]">
@@ -301,7 +318,7 @@ function FanConversationsSection() {
           {fanStories.map((story) => (
             <article
               key={story.index}
-              className="relative h-[248px] overflow-hidden rounded-[16px] bg-[#131018] px-[22px] py-[18px]"
+              className="relative h-[248px] overflow-hidden rounded-[16px] bg-[#131018] px-[22px] py-[18px] transition-transform duration-300 hover:-translate-y-1"
             >
               <p className="font-display text-vibe-purple text-[24px] leading-[34px] font-bold">
                 {story.index}
