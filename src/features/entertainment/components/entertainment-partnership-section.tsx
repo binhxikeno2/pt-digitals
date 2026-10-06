@@ -23,7 +23,7 @@ export function EntertainmentPartnershipSection() {
 
         <div className="flex flex-col items-start gap-[18px] xl:items-end xl:gap-[22px] xl:pt-[30px]">
           <CtaLink
-            href="mailto:hello@ptdigitals.vn"
+            href="mailto:legal@ptdigitals.com"
             className="mr-8 h-12 w-full max-w-[304px] justify-start px-[22px] py-0 text-[11px]"
           >
             START A PARTNERSHIP&nbsp; →

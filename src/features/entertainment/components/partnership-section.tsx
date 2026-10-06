@@ -35,7 +35,7 @@ export function PartnershipSection() {
           data-node-id="13:7"
           className="flex flex-wrap items-start justify-center gap-3"
         >
-          <CtaLink href="mailto:hello@ptdigitals.vn" className="w-[266px] px-6">
+          <CtaLink href="mailto:legal@ptdigitals.com" className="w-[266px] px-6">
             SUBMIT PARTNERSHIP PROPOSAL&nbsp;&nbsp;→
           </CtaLink>
           <CtaLink href="#rights" variant="glass" className="w-[178px] px-6">

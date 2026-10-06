@@ -46,10 +46,10 @@ function ContactIntroSection() {
             idea, and our team will connect you with the right people.
           </p>
           <a
-            href="mailto:hello@ptdigitals.vn"
+            href="mailto:legal@ptdigitals.com"
             className="focus-visible:outline-vibe-lime mt-[55px] inline-flex rounded-sm text-[11px] leading-6 font-semibold text-[#f8f6ff] focus-visible:outline-2 focus-visible:outline-offset-4"
           >
-            hello@ptdigitals.vn
+            legal@ptdigitals.com
           </a>
         </div>
 

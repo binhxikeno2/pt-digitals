@@ -50,10 +50,10 @@ export function SiteFooter() {
                 NEW BUSINESS
               </p>
               <a
-                href="mailto:hello@ptdigitals.vn"
+                href="mailto:legal@ptdigitals.com"
                 className="focus-visible:outline-vibe-lime rounded-sm text-[14px] leading-[17px] font-medium text-white focus-visible:outline-2"
               >
-                hello@ptdigitals.vn
+                legal@ptdigitals.com
               </a>
               <p className="text-[12px] leading-[15px] text-[#8e8696]">
                 Ho Chi Minh City • Vietnam
