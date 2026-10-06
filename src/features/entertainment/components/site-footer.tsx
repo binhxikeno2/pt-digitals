@@ -1,4 +1,5 @@
 import { PageContainer } from "@/components/layout/page-container";
+import { FooterContactLink } from "@/features/entertainment/components/footer-contact-link";
 import { footerGroups } from "@/features/entertainment/data/content";
 
 export function SiteFooter() {
@@ -46,18 +47,10 @@ export function SiteFooter() {
             ))}
 
             <div className="flex flex-col items-start gap-[10px]">
-              <p className="text-vibe-purple text-[10px] leading-3 font-semibold">
-                NEW BUSINESS
-              </p>
-              <a
-                href="mailto:legal@ptdigitals.com"
-                className="focus-visible:outline-vibe-lime rounded-sm text-[14px] leading-[17px] font-medium text-white focus-visible:outline-2"
-              >
-                legal@ptdigitals.com
-              </a>
-              <p className="text-[12px] leading-[15px] text-[#8e8696]">
+              <FooterContactLink />
+              {/* <p className="text-[12px] leading-[15px] text-[#8e8696]">
                 Ho Chi Minh City • Vietnam
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
