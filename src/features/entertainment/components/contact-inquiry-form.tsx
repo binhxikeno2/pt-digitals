@@ -54,9 +54,9 @@ export function ContactInquiryForm() {
       });
 
       if (!response.ok) {
-        const payload = (await response.json().catch(() => null)) as
-          | { error?: string }
-          | null;
+        const payload = (await response.json().catch(() => null)) as {
+          error?: string;
+        } | null;
         setSubmitStatus({
           message: payload?.error ?? "Unable to send message right now.",
           type: "error",
@@ -66,7 +66,8 @@ export function ContactInquiryForm() {
 
       form.reset();
       setSubmitStatus({
-        message: "Send message successfully",
+        message:
+          "Thank you for reaching out. A member of our team will get back to you as soon as possible.",
         type: "success",
       });
     } finally {
@@ -112,7 +113,7 @@ export function ContactInquiryForm() {
             name="message"
             placeholder=""
             required
-            className="h-36 w-full resize-none rounded-[14px] border border-[#3d3352] bg-[#0b0911] px-[15px] py-[13px] text-[14px] leading-[normal] text-[#f8f6ff] outline-none placeholder:text-[#b0abc2] focus-visible:border-vibe-lime"
+            className="focus-visible:border-vibe-lime h-36 w-full resize-none rounded-[14px] border border-[#3d3352] bg-[#0b0911] px-[15px] py-[13px] text-[14px] leading-[normal] text-[#f8f6ff] outline-none placeholder:text-[#b0abc2]"
           />
         </div>
       </div>
@@ -138,7 +139,7 @@ export function ContactInquiryForm() {
         } ${
           submitStatus?.type === "error"
             ? "border-[rgba(239,68,68,0.35)] bg-[rgba(33,13,20,0.92)] text-[#ffb4b4]"
-            : "border-[rgba(207,255,58,0.28)] bg-[rgba(16,22,12,0.92)] text-vibe-lime"
+            : "text-vibe-lime border-[rgba(207,255,58,0.28)] bg-[rgba(16,22,12,0.92)]"
         }`}
       >
         <p className="text-[10px] leading-3 font-semibold tracking-[0.08em]">
@@ -175,7 +176,7 @@ function ContactTextField({
         type={type}
         placeholder={placeholder}
         required={required}
-        className="h-[52px] w-full rounded-[14px] border border-[#3d3352] bg-[#0b0911] px-4 text-[14px] leading-[normal] text-[#f8f6ff] outline-none placeholder:text-[#b0abc2] focus-visible:border-vibe-lime"
+        className="focus-visible:border-vibe-lime h-[52px] w-full rounded-[14px] border border-[#3d3352] bg-[#0b0911] px-4 text-[14px] leading-[normal] text-[#f8f6ff] outline-none placeholder:text-[#b0abc2]"
       />
     </div>
   );
