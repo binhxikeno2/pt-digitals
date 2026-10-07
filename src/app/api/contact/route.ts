@@ -91,7 +91,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.log(error, 'error');
     return Response.json(
-      { error: "Unable to send message right now." },
+      { error: JSON.stringify(error) },
       { status: 502 },
     );
   }
