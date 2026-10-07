@@ -1,4 +1,3 @@
-const contactRecipient = "legal@ptdigitals.com";
 const resendEndpoint = "https://api.resend.com/emails";
 
 function getStringValue(value: unknown) {
@@ -40,6 +39,8 @@ export async function POST(request: Request) {
   }
 
   const resendApiKey = process.env.RESEND_API_KEY;
+  const contactRecipient =
+    process.env.CONTACT_TO_EMAIL ?? "legal@ptdigitals.com";
   const fromEmail =
     process.env.CONTACT_FROM_EMAIL ?? "PT Digitals <onboarding@resend.dev>";
 
