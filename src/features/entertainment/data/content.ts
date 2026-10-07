@@ -6,10 +6,10 @@ export const navigationItems = [
 ] as const;
 
 export const platformMetrics = [
-  { value: "2.4K+", label: "Works managed", highlighted: true },
-  { value: "180+", label: "Creative partners", highlighted: false },
-  { value: "32M", label: "Reach / month", highlighted: false },
-  { value: "14", label: "IP Markets", highlighted: false },
+  { value: "64", label: "Tracks reviewed", highlighted: true },
+  { value: "12", label: "Rights partners", highlighted: false },
+  { value: "480K", label: "Monthly reach", highlighted: false },
+  { value: "3", label: "Markets", highlighted: false },
 ] as const;
 
 export const aiCapabilities = [
@@ -19,9 +19,48 @@ export const aiCapabilities = [
 ] as const;
 
 export const aiResults = [
-  { title: "Summer Pulse", detail: "92% match • Pop / Tropical" },
-  { title: "Sunlit Stories", detail: "88% match • Lifestyle / Travel" },
-  { title: "New Day Energy", detail: "84% match • Youth / Sports" },
+  {
+    title: "Summer Pulse",
+    detail: "92% match • Pop / Tropical",
+    keywords: [
+      "positive",
+      "energy",
+      "summer",
+      "launch",
+      "campaign",
+      "pop",
+      "trend",
+      "trends",
+    ],
+  },
+  {
+    title: "Sunlit Stories",
+    detail: "88% match • Lifestyle / Travel",
+    keywords: [
+      "positive",
+      "summer",
+      "brand",
+      "travel",
+      "warm",
+      "content",
+      "rights",
+      "licensing",
+    ],
+  },
+  {
+    title: "New Day Energy",
+    detail: "84% match • Youth / Sports",
+    keywords: [
+      "positive",
+      "energy",
+      "upbeat",
+      "sports",
+      "youth",
+      "morning",
+      "trend",
+      "trends",
+    ],
+  },
 ] as const;
 
 export const ipCapabilities = [
@@ -45,24 +84,30 @@ export const ipCapabilities = [
 export const newsroomArticles = [
   {
     index: "01",
-    category: "AI & MUSIC",
-    title: "When algorithms become creative collaborators",
-    meta: "6 min read • 21.09.2026",
-    gradient: "from-[#3a1766] to-[#b747c8]",
+    category: "K-POP",
+    title: "Run BTS! returns and pulls fans back into the conversation",
+    meta: "1.8M reach • 01.10.2026",
+    signal: "Most opened this week",
+    image: "/figma/news/most-accessed-kpop.jpg",
+    imageAlt: "Concert crowd facing bright stage lights",
   },
   {
     index: "02",
-    category: "RIGHTS & BUSINESS",
-    title: "Copyright in the age of infinite content",
-    meta: "9 min read • 18.09.2026",
-    gradient: "from-[#173d42] to-[#1e8e7b]",
+    category: "VIDEO PREMIERE",
+    title: "Patient Zero keeps music-video watchers replaying every frame",
+    meta: "1.2M reach • 28.09.2026",
+    signal: "Fastest audience lift",
+    image: "/figma/news/most-accessed-video.jpg",
+    imageAlt: "Film crew member beside a camera on a production set",
   },
   {
     index: "03",
-    category: "CULTURE",
-    title: "From local scene to global fandom",
-    meta: "7 min read • 12.09.2026",
-    gradient: "from-[#4a3511] to-[#b7821d]",
+    category: "NEW MUSIC",
+    title: "Frequency of Love climbs across R&B and pop discovery feeds",
+    meta: "980K reach • 01.10.2026",
+    signal: "Top saved story",
+    image: "/figma/news/most-accessed-rnb.jpg",
+    imageAlt: "Vocalist recording into a studio microphone",
   },
 ] as const;
 

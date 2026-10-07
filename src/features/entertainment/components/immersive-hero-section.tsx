@@ -34,10 +34,10 @@ export function ImmersiveHeroSection() {
 
         <article className="relative h-[584px] w-full overflow-hidden rounded-[28px] bg-[#1f142e] xl:h-[618px] xl:w-[608px]">
           <Image
-            src="/figma/entertainment/neon-coliseum.jpeg"
-            alt="A virtual concert arena illuminated by immersive light installations"
-            width={1376}
-            height={768}
+            src="/figma/entertainment/beach-please-crowd-lights.jpg"
+            alt="An artist on stage facing a crowd illuminated by thousands of phone lights"
+            width={1280}
+            height={854}
             priority
             className="absolute inset-x-0 top-0 h-[390px] w-full rounded-[24px] object-cover"
           />

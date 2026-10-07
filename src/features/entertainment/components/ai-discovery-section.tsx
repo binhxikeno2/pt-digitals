@@ -1,10 +1,66 @@
+"use client";
+
+import { type FormEvent, useMemo, useState } from "react";
+
 import { PageContainer } from "@/components/layout/page-container";
 import {
   aiCapabilities,
   aiResults,
 } from "@/features/entertainment/data/content";
 
+const defaultAiQuery =
+  "Find positive energy content for a summer launch campaign.";
+
+const ignoredSearchTerms = new Set([
+  "about",
+  "content",
+  "find",
+  "for",
+  "the",
+  "with",
+]);
+
+function getSearchTerms(query: string) {
+  return query
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter((term) => term.length > 2 && !ignoredSearchTerms.has(term));
+}
+
 export function AiDiscoverySection() {
+  const [query, setQuery] = useState(defaultAiQuery);
+  const [assistantQuery, setAssistantQuery] = useState("");
+
+  const matchingResults = useMemo(() => {
+    const searchTerms = getSearchTerms(query);
+
+    if (searchTerms.length === 0) {
+      return aiResults;
+    }
+
+    return aiResults.filter((result) => {
+      const searchableContent = [
+        result.title,
+        result.detail,
+        ...result.keywords,
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      return searchTerms.some((term) => searchableContent.includes(term));
+    });
+  }, [query]);
+
+  function updateAssistantQuery(nextQuery: string) {
+    setAssistantQuery(nextQuery);
+    setQuery(nextQuery.trim() === "" ? defaultAiQuery : nextQuery);
+  }
+
+  function handleAssistantSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setQuery(assistantQuery.trim() === "" ? defaultAiQuery : assistantQuery);
+  }
+
   return (
     <section
       id="ai"
@@ -76,9 +132,21 @@ export function AiDiscoverySection() {
             data-node-id="10:25"
             className="w-full rounded-[18px] bg-[#332840] px-[18px] py-[15px] xl:w-[636px]"
           >
-            <p className="text-[14px] leading-[17px] text-[#f4eff8]">
-              “Find positive energy content for a summer launch campaign.”
-            </p>
+            <label className="sr-only" htmlFor="ai-content-search">
+              Search content with VIBE AI
+            </label>
+            <div className="flex items-start text-[14px] leading-[17px] text-[#f4eff8]">
+              <span aria-hidden="true">“</span>
+              <input
+                id="ai-content-search"
+                type="search"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                className="min-w-0 flex-1 bg-transparent text-[14px] leading-[17px] text-[#f4eff8] outline-none placeholder:text-[#9c8dac]"
+                placeholder="Search music, mood, campaign or rights"
+              />
+              <span aria-hidden="true">”</span>
+            </div>
           </div>
 
           <div
@@ -86,10 +154,11 @@ export function AiDiscoverySection() {
             className="flex w-full flex-col items-start gap-[13px] rounded-[18px] bg-[#13111b] px-[18px] py-4 xl:h-[225px] xl:w-[636px]"
           >
             <p className="text-[13px] leading-4 text-[#bdb4c5]">
-              Analyzed 2,438 pieces of content and found 3 matching clusters:
+              Analyzed 2,438 pieces of content and found{" "}
+              {matchingResults.length} matching clusters:
             </p>
             <ol className="flex w-full flex-col gap-[13px] xl:w-[594px]">
-              {aiResults.map((result, index) => (
+              {matchingResults.map((result, index) => (
                 <li
                   key={result.title}
                   className="flex h-[46px] w-full items-center justify-between"
@@ -120,19 +189,37 @@ export function AiDiscoverySection() {
                 </li>
               ))}
             </ol>
+            {matchingResults.length === 0 ? (
+              <p className="text-[12px] leading-[15px] text-[#918798]">
+                No matching clusters yet.
+              </p>
+            ) : null}
           </div>
 
-          <div
+          <form
             data-node-id="10:50"
+            onSubmit={handleAssistantSubmit}
             className="flex h-12 w-full items-center justify-between rounded-full border border-[#3d3347] bg-[#0c0b11] pr-2 pl-4"
           >
-            <p className="truncate text-[12px] leading-[15px] text-[#756c7e]">
-              Ask VIBE AI about content, trends or rights...
-            </p>
-            <span className="bg-vibe-lime flex size-[34px] shrink-0 items-center justify-center rounded-full text-[16px] leading-[19px] font-semibold text-[#10130a]">
+            <label className="sr-only" htmlFor="ai-assistant-search">
+              Ask VIBE AI about content, trends or rights
+            </label>
+            <input
+              id="ai-assistant-search"
+              type="search"
+              value={assistantQuery}
+              onChange={(event) => updateAssistantQuery(event.target.value)}
+              className="min-w-0 flex-1 bg-transparent text-[12px] leading-[15px] text-[#f4eff8] outline-none placeholder:text-[#756c7e]"
+              placeholder="Ask VIBE AI about content, trends or rights..."
+            />
+            <button
+              type="submit"
+              aria-label="Search VIBE AI content"
+              className="bg-vibe-lime flex size-[34px] shrink-0 items-center justify-center rounded-full text-[16px] leading-[19px] font-semibold text-[#10130a]"
+            >
               ↑
-            </span>
-          </div>
+            </button>
+          </form>
         </article>
       </PageContainer>
     </section>

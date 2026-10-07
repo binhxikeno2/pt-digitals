@@ -5,58 +5,101 @@ import { ScrollReveal } from "@/components/layout/scroll-reveal";
 import { SiteFooter } from "@/features/entertainment/components/site-footer";
 import { SiteHeader } from "@/features/entertainment/components/site-header";
 
-const latestStories = [
+const hollywoodStories = [
   {
-    date: "01 OCT 2026",
-    category: "NEW MUSIC",
-    title: "Victoria Monét releases 22-track album Frequency of Love",
-    source: "AP  •  MUSIC",
-    image: "/figma/news/frequency-of-love.png",
-    imageAlt: "A concert stage lit by golden holographic light streams",
-    compactTitle: false,
+    date: "31 AUG 2026",
+    category: "HOLLYWOOD",
+    title: "Hollywood bids farewell to Dolly Parton",
+    summary:
+      "U.S. networks aired tribute programming as Hollywood stars and political figures shared condolences.",
+    href: "https://vnexpress.net/hollywood-tien-biet-dolly-parton-5115326.html",
+    image: "/figma/news/vnexpress/dolly-parton-farewell.png",
+    imageAlt: "Dolly Parton in a portrait shared on Instagram",
   },
   {
-    date: "28 SEP 2026",
-    category: "VIDEO PREMIERE",
-    title:
-      "Taylor Swift's Patient Zero video stars Dakota Johnson and Colin Farrell",
-    source: "REUTERS  •  MUSIC",
-    image: "/figma/news/madonna-vmas.png",
-    imageAlt: "A neon arena performance with a luminous stage",
-    compactTitle: false,
+    date: "27 AUG 2026",
+    category: "SCREEN LEGACY",
+    title: "Dolly Parton's screen legacy",
+    summary:
+      "Her role as Doralee Rhodes in 9 to 5 helped make the country icon a Hollywood standout.",
+    href: "https://vnexpress.net/dau-an-tren-man-anh-cua-dolly-parton-5113502.html",
+    image: "/figma/news/vnexpress/dolly-parton-screen-legacy.jpg",
+    imageAlt: "Dolly Parton in the film 9 to 5",
   },
   {
-    date: "01 OCT 2026",
-    category: "K-POP",
-    title: "BTS teases a new season of Run BTS!",
-    source: "INQUIRER  •  K-POP",
-    image: "/figma/news/patient-zero.png",
-    imageAlt: "A performer in reflective futuristic stage styling",
-    compactTitle: false,
+    date: "25 AUG 2026",
+    category: "RED CARPET",
+    title: "Stars who went barefoot at major events",
+    summary:
+      "Julia Roberts, Cameron Diaz, Emma Thompson and others chose comfort at film and fashion events.",
+    href: "https://vnexpress.net/nhung-ngoi-sao-di-chan-tran-du-su-kien-5112524.html",
+    image: "/figma/news/vnexpress/barefoot-stars.jpg",
+    imageAlt: "Stars appearing barefoot at public events",
   },
   {
-    date: "01 OCT 2026",
-    category: "FILM",
-    title: "Anne Hathaway debuts baby bump at Verity premiere",
-    source: "PEOPLE  •  FILM",
-    image: "/figma/news/verity-premiere.png",
-    imageAlt: "A cybernetic musician standing in a studio",
-    compactTitle: true,
+    date: "21 AUG 2026",
+    category: "FASHION",
+    title: "Margaret Qualley steps out in Chanel's heel-only shoes",
+    summary:
+      "The actor's barely-there footwear at The Dog Stars premiere sparked a wave of online debate.",
+    href: "https://vnexpress.net/my-nhan-hollywood-dien-mot-giay-chi-co-got-5111850.html",
+    image: "/figma/news/vnexpress/heel-only-shoes.jpg",
+    imageAlt: "Margaret Qualley wearing Chanel heel-only shoes at a premiere",
+  },
+  {
+    date: "03 AUG 2026",
+    category: "POP CULTURE",
+    title: "Fans voice concern over Ariana Grande's appearance",
+    summary:
+      "Viewers reacted to the singer's look in a new music video and raised questions about her health.",
+    href: "https://vnexpress.net/fan-lo-lang-cho-ngoai-hinh-cua-ariana-grande-5104406.html",
+    image: "/figma/news/vnexpress/ariana-grande.png",
+    imageAlt: "Ariana Grande wearing a sweater printed with her album title",
+  },
+  {
+    date: "08 JUL 2026",
+    category: "AI FILM",
+    title: "AI actor Tilly Norwood lands a lead role in Hollywood",
+    summary:
+      "The virtual performer is set to star in Misaligned, the debut feature from studio Particle6.",
+    href: "https://vnexpress.net/dien-vien-ai-lan-dau-dong-chinh-phim-hollywood-5094832.html",
+    image: "/figma/news/vnexpress/tilly-norwood.jpg",
+    imageAlt: "AI actor Tilly Norwood in a promotional image",
+  },
+  {
+    date: "30 JUN 2026",
+    category: "HOLLYWOOD CULTURE",
+    title: "The rush to buy burial plots beside famous people",
+    summary:
+      "Some Americans are paying six-figure sums for resting places near Hollywood stars and music legends.",
+    href: "https://vnexpress.net/con-sot-mua-mo-canh-nguoi-noi-tieng-5091439.html",
+    image: "/figma/news/vnexpress/celebrity-burial-plots.jpg",
+    imageAlt: "Anthony Jabin posing near Marilyn Monroe's resting place",
+  },
+  {
+    date: "25 JUN 2026",
+    category: "AI FILMMAKING",
+    title: "Google invests $75 million in A24's AI filmmaking tools",
+    summary:
+      "The deal gives A24 access to DeepMind support as Hollywood experiments with AI production workflows.",
+    href: "https://vnexpress.net/google-rot-hang-chuc-trieu-usd-cho-cong-cu-lam-phim-ai-5088937.html",
+    image: "/figma/news/vnexpress/google-a24-ai.jpg",
+    imageAlt: "A collage of A24 films for the Google and A24 AI partnership",
   },
 ] as const;
 
 const artistWatchItems = [
   {
-    eyebrow: "NEW ALBUM",
-    copy: "Victoria Monét returns with a 22-track R&B project.",
+    eyebrow: "TRIBUTE BROADCASTS",
+    copy: "U.S. networks aired prime-time specials honoring her life and work.",
   },
   {
-    eyebrow: "VMA HISTORY",
-    copy: "Madonna takes seven awards in a career-spanning return.",
+    eyebrow: "OPRY HOMECOMING",
+    copy: "Grand Ole Opry artists gathered in Nashville to celebrate her influence.",
   },
   {
-    eyebrow: "ON SCREEN",
-    copy: "Taylor Swift's latest video brings two stars into the story.",
+    eyebrow: "LASTING LEGACY",
+    copy: "Her songs, screen roles and philanthropy shaped generations of fans.",
   },
 ] as const;
 
@@ -162,14 +205,14 @@ function LeadStorySection() {
       <PageContainer className="h-full py-12 xl:py-0">
         <div className="relative h-full">
           <p className="text-vibe-purple text-[11px] leading-[22px] font-semibold xl:absolute xl:top-12 xl:left-0">
-            ARTIST SPOTLIGHT&nbsp; / &nbsp;2026 VMAs
+            ARTIST SPOTLIGHT&nbsp; / &nbsp;DOLLY PARTON
           </p>
 
           <div className="mt-[18px] grid gap-10 lg:grid-cols-[minmax(0,720px)_minmax(360px,520px)] lg:gap-12 xl:absolute xl:top-[88px] xl:left-0 xl:mt-0 xl:grid-cols-[720px_520px]">
             <figure className="group relative h-[360px] overflow-hidden rounded-[18px] sm:h-[430px] xl:h-[430px]">
               <Image
-                src="/figma/news/madonna-vmas.png"
-                alt="A neon arena performance with a luminous stage"
+                src="/figma/news/vnexpress/dolly-parton-farewell.png"
+                alt="Dolly Parton in a portrait shared on Instagram"
                 fill
                 loading="eager"
                 fetchPriority="high"
@@ -177,8 +220,8 @@ function LeadStorySection() {
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <figcaption className="absolute inset-x-0 bottom-0 flex h-[50px] items-center bg-[#0d0a14] px-5 text-[10px] leading-[22px] font-semibold text-[#f8f6ff]">
-                2026 VMAs&nbsp; • &nbsp;7 WINS&nbsp; •
-                &nbsp;CAREER-SPANNING RETURN
+                DOLLY PARTON&nbsp; • &nbsp;TRIBUTE BROADCASTS&nbsp; • &nbsp;31
+                AUG 2026
               </figcaption>
             </figure>
 
@@ -187,22 +230,35 @@ function LeadStorySection() {
                 id="lead-story-title"
                 className="font-display max-w-[520px] text-[36px] leading-[43px] font-bold text-[#f8f6ff] xl:text-[42px] xl:leading-[52px]"
               >
-                Madonna rules the 2026 VMAs with seven wins
+                <a
+                  href="https://vnexpress.net/hollywood-tien-biet-dolly-parton-5115326.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-vibe-lime focus-visible:text-vibe-lime focus-visible:outline-vibe-lime rounded-sm transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4"
+                >
+                  Hollywood bids farewell to Dolly Parton
+                </a>
               </h2>
               <p className="text-vibe-muted mt-7 max-w-[500px] text-[16px] leading-[26px] xl:mt-8">
-                Madonna opened the show with Sabrina Carpenter and Charli XCX,
-                then left as its top winner.
+                Networks, artists and public figures honored the country icon as
+                fans revisited her music, films and philanthropy.
               </p>
               <p className="text-vibe-purple mt-8 text-[10px] leading-[22px] font-semibold xl:mt-8">
-                PEOPLE&nbsp; • &nbsp;01 OCT 2026
+                VNEXPRESS&nbsp; • &nbsp;31 AUG 2026
               </p>
               <div className="mt-4 h-px max-w-[480px] bg-[#30263b]" />
               <p className="text-vibe-lime mt-5 text-[10px] leading-[22px] font-semibold xl:mt-[25px]">
-                MORE FROM THE NIGHT
+                MORE FROM THE STORY
               </p>
               <div className="mt-[11px] flex flex-col gap-[13px] text-[13px] leading-[22px] font-medium text-[#f8f6ff]">
-                <p>01&nbsp;&nbsp; Taylor Swift makes VMA history with her 33rd win</p>
-                <p>02&nbsp;&nbsp; Lisa takes Best Pop for &apos;Dream&apos;</p>
+                <p>
+                  01&nbsp;&nbsp; CBS and U.S. networks revisited a rhinestone
+                  life
+                </p>
+                <p>
+                  02&nbsp;&nbsp; Grand Ole Opry and global tributes remembered
+                  her joy
+                </p>
               </div>
             </article>
           </div>
@@ -211,10 +267,10 @@ function LeadStorySection() {
             <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-[390px_245px_245px_245px] xl:gap-x-[42px]">
               <div>
                 <p className="text-vibe-lime text-[10px] leading-[22px] font-semibold">
-                  ARTIST WATCH
+                  DOLLY PARTON BRIEF
                 </p>
                 <h3 className="font-display mt-[3px] text-[20px] leading-7 font-semibold text-[#f8f6ff]">
-                  The names moving pop culture today.
+                  A farewell to a country icon.
                 </h3>
               </div>
               {artistWatchItems.map((item) => (
@@ -237,26 +293,23 @@ function LeadStorySection() {
 
 function ArtistDeskSection() {
   return (
-    <section
-      aria-labelledby="artist-desk-title"
-      className="bg-[#131018] xl:h-[620px]"
-    >
-      <PageContainer className="h-full py-[52px] xl:pb-0">
+    <section aria-labelledby="artist-desk-title" className="bg-[#131018]">
+      <PageContainer className="h-full py-[52px] xl:py-16">
         <p className="text-vibe-lime text-[11px] leading-[22px] font-semibold">
-          LATEST ARTIST NEWS&nbsp; / &nbsp;OCT 01
+          VNEXPRESS HOLLYWOOD&nbsp; / &nbsp;TRANSLATED EDIT
         </p>
         <h2
           id="artist-desk-title"
           className="font-display mt-2 max-w-[800px] text-[30px] leading-[38px] font-bold text-[#f8f6ff] xl:text-[34px] xl:leading-[48px]"
         >
-          New music, big wins and the moments fans are following.
+          Hollywood today
         </h2>
 
         <div className="news-artist-list mt-[26px] xl:mt-[30px]">
-          {latestStories.map((story) => (
+          {hollywoodStories.map((story) => (
             <article
               key={story.title}
-              className="news-artist-list-item group relative min-h-[138px] border-b border-[#30263b] py-4 pl-[132px] transition-colors duration-300 hover:border-vibe-purple/70 xl:h-[114px] xl:min-h-0 xl:py-0 xl:pl-[140px]"
+              className="news-artist-list-item group hover:border-vibe-purple/70 relative min-h-[162px] border-b border-[#30263b] py-4 pl-[132px] transition-colors duration-300 xl:min-h-[134px] xl:py-0 xl:pl-[140px]"
             >
               <div className="absolute top-4 left-0 h-[84px] w-28 overflow-hidden rounded-[10px] xl:top-0">
                 <Image
@@ -276,19 +329,20 @@ function ArtistDeskSection() {
                     {story.category}
                   </p>
                 </div>
-                <h3
-                  className={`font-display max-w-[930px] pr-0 font-semibold text-[#f8f6ff] xl:pr-48 ${
-                    story.compactTitle
-                      ? "text-[20px] leading-[28px]"
-                      : "text-[22px] leading-[29px]"
-                  }`}
-                >
-                  {story.title}
+                <h3 className="font-display max-w-[930px] pr-0 text-[21px] leading-[28px] font-semibold text-[#f8f6ff] xl:pr-48 xl:text-[22px] xl:leading-[29px]">
+                  <a
+                    href={story.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group-hover:text-vibe-lime focus-visible:text-vibe-lime focus-visible:outline-vibe-lime rounded-sm transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2"
+                  >
+                    {story.title}
+                  </a>
                 </h3>
+                <p className="text-vibe-muted max-w-[780px] text-[12px] leading-[21px] xl:pr-48">
+                  {story.summary}
+                </p>
               </div>
-              <p className="text-vibe-muted mt-3 text-[11px] leading-[18px] xl:absolute xl:top-1 xl:right-[6px] xl:mt-0 xl:w-[180px] xl:text-right">
-                {story.source}
-              </p>
             </article>
           ))}
         </div>
@@ -377,7 +431,7 @@ function WeeklyBriefingSection() {
                 id="weekly-brief-email"
                 type="email"
                 placeholder="Your work email address"
-                className="h-12 w-full rounded-[24px] border-0 bg-[#131018] px-[22px] text-[13px] leading-[22px] text-[#f8f6ff] outline-none placeholder:text-[#b0abc2] focus-visible:ring-2 focus-visible:ring-vibe-lime sm:w-[350px]"
+                className="focus-visible:ring-vibe-lime h-12 w-full rounded-[24px] border-0 bg-[#131018] px-[22px] text-[13px] leading-[22px] text-[#f8f6ff] outline-none placeholder:text-[#b0abc2] focus-visible:ring-2 sm:w-[350px]"
               />
               <button
                 type="submit"

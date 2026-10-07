@@ -20,7 +20,7 @@ export function MetricsSection() {
             id="metrics-title"
             className="font-display text-[22px] leading-6 font-bold text-[#f5f2f8]"
           >
-            Scale that creates impact.
+            Measured growth, real traction.
           </h2>
         </div>
 
