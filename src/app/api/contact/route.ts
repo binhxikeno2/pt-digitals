@@ -88,7 +88,8 @@ export async function POST(request: Request) {
     if (resendResponse.ok) {
       return Response.json({ ok: true });
     }
-  } catch {
+  } catch (error) {
+    console.log(error, 'error');
     return Response.json(
       { error: "Unable to send message right now." },
       { status: 502 },
