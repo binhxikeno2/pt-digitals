@@ -44,6 +44,9 @@ export async function POST(request: Request) {
     process.env.CONTACT_FROM_EMAIL ?? "PT Digitals <onboarding@resend.dev>";
 
   if (!resendApiKey) {
+    console.error(
+      "Contact email service is not configured: RESEND_API_KEY is missing.",
+    );
     return Response.json(
       { error: "Email service is not configured." },
       { status: 503 },
@@ -88,12 +91,15 @@ export async function POST(request: Request) {
     if (resendResponse.ok) {
       return Response.json({ ok: true });
     }
+
+    const errorDetails = await resendResponse.text();
+    console.error("Contact email provider rejected the request.", {
+      status: resendResponse.status,
+      statusText: resendResponse.statusText,
+      details: errorDetails,
+    });
   } catch (error) {
-    console.log(error, 'error');
-    return Response.json(
-      { error: JSON.stringify(error) },
-      { status: 502 },
-    );
+    console.error("Contact email request failed.", error);
   }
 
   return Response.json(
